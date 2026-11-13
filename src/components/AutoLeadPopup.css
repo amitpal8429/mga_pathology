@@ -1,0 +1,71 @@
+/* src/components/AutoLeadPopup.css */
+.alp {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.alp__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  animation: alp-fade 0.25s ease;
+}
+
+.alp__panel {
+  position: relative;
+  background: #fff;
+  border-radius: 24px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: alp-pop 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.alp__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+.alp__close:hover {
+  background: #e2e8f0;
+}
+
+.alp__body {
+  padding: 24px;
+}
+
+@keyframes alp-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes alp-pop {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 480px) {
+  .alp { padding: 10px; }
+  .alp__panel { border-radius: 18px; max-height: 94vh; }
+  .alp__body { padding: 20px; }
+}

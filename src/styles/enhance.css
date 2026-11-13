@@ -1,0 +1,57 @@
+/* enhance.css – motion + small details (scroll reveal, marquee, progress, back-to-top).
+   Everything moves gently and is switched off by prefers-reduced-motion. No 3D transforms. */
+
+/* scroll reveal */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.levels > .reveal, .stages > .reveal { height: 100%; }
+
+/* hero entrance */
+.hero-copy > * { animation: rise 0.7s var(--ease) both; }
+.hero-copy > :nth-child(2) { animation-delay: 0.06s; }
+.hero-copy > :nth-child(3) { animation-delay: 0.12s; }
+.hero-copy > :nth-child(4) { animation-delay: 0.18s; }
+.hero-copy > :nth-child(5) { animation-delay: 0.24s; }
+.hero-field svg { animation: focus-in 1.1s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+@keyframes focus-in { from { opacity: 0; filter: blur(8px); } }
+
+/* reading progress + back to top */
+.progress { position: fixed; left: 0; right: 0; top: 0; height: 3px; z-index: 80; pointer-events: none; }
+.progress span { display: block; height: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--eosin); transition: transform 0.08s linear; }
+.to-top { position: fixed; right: max(20px, env(safe-area-inset-right, 0px)); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); z-index: 65; width: 46px; height: 46px; border-radius: var(--r-s); border: 1px solid var(--ink); background: var(--paper); color: var(--ink); display: grid; place-items: center; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity 0.25s, transform 0.25s var(--ease), background 0.15s, color 0.15s; }
+.to-top .icon { transform: rotate(-90deg); }
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { background: var(--ink); color: #fff; }
+/* sit above the sticky Enquire / WhatsApp bar */
+@media (max-width: 980px) { .to-top { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); } }
+@media (max-width: 520px) { .to-top { width: 42px; height: 42px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); } }
+@media (max-height: 480px) and (orientation: landscape) { .to-top { bottom: 14px; } }
+
+/* focus-area ticker */
+.marquee { overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper-2); max-width: 100%; }
+.marquee-track { display: flex; width: max-content; animation: scroll-x 44s linear infinite; }
+.marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
+.marquee-row { display: flex; gap: 34px; list-style: none; margin: 0; padding: 15px 17px; }
+.marquee-row a { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; color: var(--ink); font: 500 0.76rem var(--mono); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none !important; transition: color 0.15s; }
+.marquee-row a .icon { color: var(--pc); }
+.marquee-row a:hover { color: var(--pd); }
+@keyframes scroll-x { to { transform: translateX(-50%); } }
+@media (max-width: 520px) {
+  .marquee-row { gap: 24px; padding: 12px 12px; }
+  .marquee-row a { font-size: 0.7rem; }
+  .marquee-track { animation-duration: 36s; }
+}
+
+/* print: strip chrome */
+@media print {
+  .site-header, .site-footer, .progress, .to-top, .mobile-cta, .marquee { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+  .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
+  .marquee-row[aria-hidden='true'] { display: none; }
+  .hero-copy > *, .hero-field svg { animation: none !important; }
+}

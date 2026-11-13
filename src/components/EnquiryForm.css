@@ -1,0 +1,169 @@
+/* Styles for src/components/EnquiryForm.jsx (compact version)
+   Colours are set here as variables on .enq so you can match them to your theme. */
+
+.enq {
+  --enq-accent: #3f2b8f;        /* button / focus colour */
+  --enq-accent-dark: #2f2070;
+  --enq-top: #d63a6e;           /* top border of the card */
+  --enq-ink: #1b1740;           /* main text */
+  --enq-muted: #5b5873;         /* secondary text */
+  --enq-line: #d6c8b4;          /* input borders */
+
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  color: var(--enq-ink);
+  border: 1px solid var(--enq-ink);
+  border-top: 4px solid var(--enq-top);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+}
+
+/* ---------- Header ---------- */
+.enq__head {
+  padding: 14px 18px 2px;
+}
+.enq__badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #efe9fb;
+  color: var(--enq-accent);
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.enq__head h3 {
+  margin: 0 0 3px;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+.enq__head p {
+  margin: 0;
+  color: var(--enq-muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* ---------- Body ---------- */
+.enq__body {
+  display: grid;
+  gap: 10px;
+  padding: 12px 18px 16px;
+}
+.enq__body h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+.enq__sub {
+  margin: -6px 0 2px;
+  color: var(--enq-muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+/* ---------- Fields ---------- */
+.enq__f {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+}
+.enq__f > span {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--enq-muted);
+}
+
+.enq input,
+.enq select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px 10px;
+  border: 1px solid var(--enq-line);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--enq-ink);
+  font: inherit;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.enq input::placeholder {
+  color: #9a96ae;
+}
+.enq input:focus,
+.enq select:focus {
+  outline: none;
+  border-color: var(--enq-accent);
+  box-shadow: 0 0 0 3px rgba(63, 43, 143, 0.15);
+}
+.enq select:disabled {
+  background: #f6f2ec;
+  color: var(--enq-muted);
+  cursor: not-allowed;
+}
+
+/* Country code + mobile number on one row */
+.enq__phone {
+  display: flex;
+  gap: 6px;
+}
+.enq__phone .enq__code {
+  flex: 0 0 68px;
+  width: 68px;
+  text-align: center;
+}
+.enq__phone input:last-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ---------- Submit ---------- */
+.enq__submit {
+  width: 100%;
+  margin-top: 2px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--enq-accent);
+  color: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+}
+.enq__submit:hover {
+  background: var(--enq-accent-dark);
+}
+.enq__submit:active {
+  transform: translateY(1px);
+}
+.enq__submit:focus-visible {
+  outline: 3px solid rgba(63, 43, 143, 0.35);
+  outline-offset: 2px;
+}
+
+.enq__note {
+  margin: 0;
+  color: var(--enq-muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 480px) {
+  .enq { max-width: 100%; }
+  .enq__head { padding: 14px 14px 2px; }
+  .enq__body { padding: 10px 14px 14px; }
+}

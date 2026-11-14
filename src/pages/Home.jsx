@@ -485,7 +485,7 @@ export default function Home() {
             <span className="pill-label"><Icon name="flask" size={14} /> Pathology department · Medical Global Academy</span>
             <h1>Master the science behind every <em>diagnosis</em></h1>
             <p className="hero-lead">
-              Online fellowships and PG diplomas in histopathology, cytopathology, hematology and transfusion medicine, taught by practising
+              Online fellowships and PG diplomas in histopathology, cytopathology, hematology  taught by practising
               pathologists around your lab and clinical schedule.
             </p>
             <form className="hero-search" onSubmit={onSearch} role="search">
